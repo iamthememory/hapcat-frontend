@@ -122,63 +122,19 @@ h1 {
 
 /*Developer Defined Classes*/
 
-/* Registration Page */
-
-/* Header Bar */
-
-.header {
-    width: 100%;
-    height: 55px;
-    background: linear-gradient(to top, transparent, #510B5D, #510B5D, #510B5D, #510B5D, #510B5D, #510B5D, #510B5D);
-    position: fixed;
-    top: 0;
-    z-index: 4;
-}
-
-.header_back_div {
-    float: left;
-    font-family: 'Raleway', sans-serif;
-    padding-top: 1vw;
-    padding-left: 1vw;
-    color: #FFF;
-}
-
-    /* Logo Field */
-
-.logo_div {
-    height: 90%;
-    width: 20%;
-    float: right;
-}
-
-.header_logo {
-    height: 90%;
-    margin-right: 10%;
-    margin-top: 5px;
-}
-
 /* Body */
 
-.registration {
-    margin-top: 10vh;
-}
-    
-    /* Welcome Field */
+    /* Logo */
 
-.welcome_message_div {
-    margin-top: 8vh;
-    margin-bottom: 5vh;
-    position: relative;
-}
-
-.welcome_message {
-    font-size: 3.0em;
-    font-family: 'Raleway', sans-serif;
+.logo {
+    margin-left: 25vw;
+    width: 50vw;
+    height: 30vh;
 }
 
     /* Input Fields */
 
-.registration_form {
+.Login_form {
     width: 70%;
     margin-right: auto;
     margin-left: auto;
@@ -190,9 +146,9 @@ h1 {
     background-color: #FFF;
     opacity: 0.9;
     color: #000;
-    height: 7vh;
     width: 100%;
-    margin-bottom: 5vh;
+    height: 8vh;
+    margin-bottom: 3vw;
 }
 
 textarea:focus, input:focus {
@@ -202,8 +158,8 @@ textarea:focus, input:focus {
 .textinput_hint {
     opacity: 1.0;
     font-size: 1em;
-    margin-bottom:0;
-    padding-left: 4vw;
+    margin-bottom: 0;
+    padding-left: 5vw;
 }
 
 .textinput {
@@ -212,26 +168,61 @@ textarea:focus, input:focus {
     outline: none;
     outline-style: none;
     margin-left: 20px;
+    margin-top: 5px;
     border: none;
     border-color: transparent;
 }
 
-.form-control:focus {
-    border-color: none;
-    -webkit-box-shadow: none;
-    box-shadow: none;
+.login {
+    width: 100%;
+    border-radius: 5px;
+    padding: 10px;
+    height: 50px;
+    margin-right: auto;
+    margin-top: auto;
+    margin-left: auto;
+    top: 50%;
 }
 
-    /* Sign Up Button */
+/* Login Button */
 
-.register_button {
+.content_button_login {
     font-family: 'Raleway', sans-serif;
-    font-size: 1.5em;
-    padding-top: 1.5vw;
-    padding-bottom: 1.5vw;
+    width: 90%;
+    height: 10vh;
+    margin-top: 10px;
     border-radius: 20px;
-    background: linear-gradient(to bottom right, #FFE892, #D0B554, #CB9F00);
-    color: #000;
-    width: 100%;
-    border-color: #510B5D;
+    background: linear-gradient(to bottom right, #FFE892, #D0B554, #CB9F00 );
+    border: none;
+    font-size: 5vw;
+    color: #FFF;
+    box-shadow: 7px 7px 5px #888888;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* New Register Button */
+
+.content_button_new {
+    font-family: 'Raleway', sans-serif;
+    width: 90%;
+    height: 10vh;
+    margin-top: 10px;
+    border-radius: 20px;
+    background: linear-gradient(to bottom right, #FFE892, #D0B554, #CB9F00 );
+    border: none;
+    font-size: 5vw;
+    color: #FFF;
+    box-shadow: 7px 7px 5px #888888;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Forgot Password */
+
+.forgotpass {
+    padding: 15px;
+    text-align: center;
 }

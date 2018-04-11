@@ -36,7 +36,7 @@
     <meta name="msapplication-tap-highlight" content="no">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/login.css">
 
 
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
@@ -53,32 +53,33 @@
 </head>
 <body onload="onLoad()">
 
-    <div class="app">
         <div>
-            <img src="img/logo.svg" align="middle" style="width:300px;height:300px;" />
+            <img src="img/logo.svg" class="logo">
         </div>
-        <div class="login_div">
-
-            <div class="textinput_div">
-                <p class="textinput_hint">Username:</p>
-                <input type="text" placeholder=" Username" class="textinput"/>
-            </div>
-            <div class="textinput_div">
-                <p class="textinput_hint">Password:</p>
-                <input type="text" placeholder=" Password" class="textinput" />
-            </div>
-            <button class="content_button">Log In</button>
-            <div>
-                <button class="content_button">New? Register here!</button>
-            </div>
-            <div>
-                <div class="forgotpass">
-                    <a href="https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX9228474.jpg">Forgot password?</a>
+        <div class="login">
+            <form class="Login_form">
+                <div class="textinput_div">
+                    <p class="textinput_hint">Username</p>
+                    <input type="text" placeholder="Enter Username" class="textinput" />
                 </div>
-            </div>
+                <div class="textinput_div">
+                    <p class="textinput_hint">Password</p>
+                    <input type="text" placeholder="Enter Password" class="textinput" />
+                </div>
+                <div>
+                    <button class="content_button_login">Log In</button>
+                </div>
+                <div>
+                    <button class="content_button_new">New? Register here!</button>
+                </div>
+                <div>
+                    <div class="forgotpass">
+                        <a href="https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX9228474.jpg">Forgot password?</a>
+                    </div>
+                </div>
+            </form>
         </div>
 
-    </div>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
 </body>
