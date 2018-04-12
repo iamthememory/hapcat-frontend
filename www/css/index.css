@@ -179,7 +179,7 @@ h1 {
 
 .content_card {
     width: 95%;
-    height: 24vh;
+    height: 24vmax;
     background: #E4E4E4;
     margin-top: 10px;
     margin-right: auto;
@@ -208,8 +208,9 @@ h1 {
 }
 
 .content_name_div {
+    width: 65vmin;
     font-family: 'Raleway', sans-serif;
-    margin: 1vw;
+    margin: 1vmax;
     border-radius: 10vw;
     background-color: #FFF;
     opacity: 0.9;
@@ -221,24 +222,26 @@ h1 {
 }
 
 .content_name {
-    padding-left: 4vw;
-    padding-right: 4vw;
+
     margin-bottom: 0;
     text-align: left;
     opacity: 1;
-    font-size: 3vh;
+    margin-left: 3vmax;
+    font-size: 4vmin !important;
 }
 
 .content_datetime {
+    font-size: 3vmin !important;
     margin-bottom: 0;
-    margin-right: 4vw;
-    margin-left: 4vw;
+    margin-right: 4vmax;
+    margin-left: 2vmax;
     text-align: left;
 }
 
 .content_distance_div {
+    width: 8vmax;
+    height: 5vmin;
     font-family: 'Raleway', sans-serif;
-    margin: 5px;
     border-radius: 1px 15px;
     background-color: #FFF;
     opacity: 0.9;
@@ -246,15 +249,16 @@ h1 {
     display: inline-block;
     position: absolute;
     z-index: 3;
-    right: 0;
-    bottom: 0;
+    right: .5vmax;
+    bottom: .5vmax;
 }
 
 .content_distance {
-    padding-left: 5px;
-    padding-right: 5px;
-    font-size: 1.3em;
-    margin: 5px;
+    padding-left: 1vmax;
+    padding-right: 1vmax;
+    font-size: 2vmax;
+    height: 100%;
+    position: center;
 }
 
 /* Content Card Tags */
@@ -264,7 +268,7 @@ h1 {
 }
 
 .content_tag_div {
-    margin: .2vh;
+    margin: .2vmax;
     border-radius: 10px 1px;
     background-color: #D05754;
     color: #FFF;
@@ -272,13 +276,13 @@ h1 {
     text-overflow: ellipsis;
     display: block;
     overflow: hidden;
-    width: 100%;
+    width: 98%;
 }
 
 .content_tag_text {
     font-family: 'Dosis', sans-serif;
     margin: .1vh;
-    font-size: 2vh;
+    font-size: 2vmax;
 }
 
 /* Welcome Card */
@@ -286,29 +290,30 @@ h1 {
 .welcome_card {
     position: relative;
     width: 95%;
-    height: 15vh;
+    height: 15vmax;
     background: linear-gradient(to bottom right, #92FFFB, #FFE892 );
-    margin-top: 10px;
+
     margin-right: auto;
     margin-left: auto;
     box-shadow: 7px 7px 5px #888888;
+    border-radius:  5vh 5vh 0 0;
     z-index: 2;
 }
 
 .welcome_text_div {
-    bottom: 5vh;
+    bottom: 5vmax;
     left: 30vw;
     color: #337E73;
-    padding-top: 3vh;
+    padding-top: 3vmax;
 }
 
 #time_of_day {
-    font-size: 4vh;
+    font-size: 4vmax !important;
     margin-bottom: 0;
 }
 
 #welcome_text {
-    font-size: 3vh;
+    font-size: 3vmax !important;
     margin-bottom: 0;
 }
 
@@ -317,13 +322,13 @@ h1 {
 .content_button {
     font-family: 'Raleway', sans-serif;
     width: 95%;
-    height: 10vh;
+    height: 10vmax;
     margin-top: 10px;
     background: linear-gradient(to bottom right, #FFE892, #D0B554, #CB9F00 );
     border-color: #510B5D;
     border-radius: 0 0 5vh 5vh;
     border-width: 1px;
-    font-size: 5vw;
+    font-size: 3vmax !important;
     color: #FFF;
     box-shadow: 7px 7px 5px #888888;
 }
@@ -338,7 +343,7 @@ h1 {
 }
 
 .event_add_button {
-    width: 10vh;
+    width: 10vmax;
 }
 
 /* Footer Bar */
@@ -401,44 +406,6 @@ h1 {
     right: 5px;
     top: 5px;
 }*/
-
-.content_name {
-    padding-left: 4vw;
-    padding-right: 4vw;
-    margin-bottom: 0;
-    text-align: left;
-    opacity: 1;
-    font-size: 2.5vh;
-}
-
-.content_datetime {
-    margin-bottom: 0;
-    margin-right: 4vw;
-    margin-left: 4vw;
-    text-align: left;
-}
-
-.content_distance_div {
-    font-family: 'Raleway', sans-serif;
-    margin: 5px;
-    border-radius: 1px 15px;
-    background-color: #FFF;
-    opacity: 0.9;
-    color: #000;
-    display: inline-block;
-    position: absolute;
-    z-index: 3;
-    right: 0;
-    bottom: 0;
-}
-
-.content_distance {
-    padding-left: 5px;
-    padding-right: 5px;
-    font-size: 1.3em;
-    margin: 5px;
-}
-
 
 
 /*Modal Classes*/
