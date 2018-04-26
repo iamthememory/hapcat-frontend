@@ -416,8 +416,9 @@ h1 {
     z-index: 8;
     left: 0;
     top: 0;
+    margin-top: 8vh;
     width: 100%;
-    height: 100%;
+    height: 85.7%;
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4);
 }
@@ -425,12 +426,12 @@ h1 {
 .modal_content {
     z-index: 8;
     position: relative;
-    margin: 10vh auto;
+    margin: 2vh auto;
     background: linear-gradient(to bottom right, #92FFFB, #FFE892);
     width: 95%;
-    height: 80%;
+    height: 96%;
     border-radius: 25px;
-    display: flex;
+    /*display: flex;*/
     flex-flow: column;
     /*overflow-y: scroll;*/
     animation-name: animatetop;
@@ -470,6 +471,7 @@ h1 {
 }
 
 .modal_name_photo {
+    height: 38vmax;
     width: 100%;
     flex: 0 1 50%;
     position: relative;
@@ -535,7 +537,7 @@ h1 {
     margin-left: 3vw;
     text-align: left;
     margin-top: .3vw;
-    font-size: 5vw;
+    font-size: 5vw !important;
 }
 
 /* Modal Distance */
@@ -558,7 +560,7 @@ h1 {
     padding-left: 5px;
     padding-right: 5px;
     margin: 5px;
-    font-size: 3vw;
+    font-size: 3.5vmin !important;
 }
 
 /* Modal Tags */
@@ -568,7 +570,7 @@ h1 {
 }
 
 .modal_tag_area {
-    margin: 10vw;
+    margin: 10vmax;
     box-shadow: 7px 7px 5px #888888;
 }
 
@@ -588,36 +590,36 @@ h1 {
 .modal_tag_text {
     font-family: 'Dosis', sans-serif;
     margin: 2px;
-    font-size: 3vw;
+    font-size: 2.3vmax !important;
 }
 
 
 /* Modal Details */
 
 .modal_about {
-    width: 94%;
-    margin: 1vh auto 0 auto;
+    width: 95%;
+    margin: 1vh auto 1vh auto;
     background-color: rgba(0,0,0,0.2);
     display: inline-block;
-    padding: 0 1vw 0 1vw;
+    padding: .5vh 1vw .5vh 1vw;
     box-shadow: 7px 7px 5px #888888;
-    border-radius: 15px 1px;
+    border-radius: 20px 1px;
     color: #FFF;
     overflow-y: scroll;
     flex: 1 1 auto;
-    font-size: 4vw;
+    font-size: 2.5vmax;
 }
 
 /* Modal Description */
 
 .modal_description {
-    width: 94%;
-    margin: 4vw auto;
+    width: 95%;
+    margin: 1vh auto 1vh auto;
     background-color: rgba(0,0,0,0.2);
     display: inline-block;
-    padding: 0 1vw 0 1vw;
+    padding: .5vh 1vw .5vh 1vw;
     box-shadow: 7px 7px 5px #888888;
-    border-radius: 15px 1px;
+    border-radius: 20px 1px;
     color: #FFF;
     overflow-y: scroll;
     flex: 1 1 auto;
