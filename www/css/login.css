@@ -186,7 +186,7 @@ textarea:focus, input:focus {
 
 /* Login Button */
 
-.content_button_login {
+.content_button {
     font-family: 'Raleway', sans-serif;
     width: 90%;
     height: 10vh;
