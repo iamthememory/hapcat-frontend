@@ -65,7 +65,7 @@ function validate() {
         password: document.forms['login_form'][1].value
     }
 
-    $.post("http://hapcat.tenaisenma.com:8080/api/v0/login/",
+    $.post("https://hapcat.tenaisenma.com/api/v0/login/",
         user,
         function (data, status) {
             alert("Data: " + data + "\nStatus: " + status);

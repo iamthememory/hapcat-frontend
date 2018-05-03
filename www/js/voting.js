@@ -361,7 +361,7 @@ function vote(direction) {
         swipe: direction//,
         //node: data[nodeSection][nodeId]
     }
-    $.post("http://hapcat.tenaisenma.com:8080/api/v0/voting/",
+    $.post("https://hapcat.tenaisenma.com/api/v0/voting/",
         voteResult,
         function (data, status) {
             alert("Data: " + data + "\nStatus: " + status);
