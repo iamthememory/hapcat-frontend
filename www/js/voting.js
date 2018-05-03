@@ -51,7 +51,7 @@ function onResume() {
 }
 
 function onLoad() {
-    init();
+    getData();
 }
 
 function getResults(callback) {
@@ -67,41 +67,73 @@ function getResults(callback) {
     xobj.send(null);
 }
 
-function init() {
-    getResults(function (response) {
-        // Parse JSON string into object
-        parsed = JSON.parse(response);
-        constructCard(parsed[0]);
-        constructStackCards();
-        hammer();
+var data;
+var tempNumber = 0;
+
+function getData() {
+    $.getJSON('https://hapcat.tenaisenma.com/api/v0/suggestions', function (response) {
+        data = response;
+        init();
     });
+}
+
+function init() {
+    //--------------For local data testing purposes---------------
+    //getResults(function (response) {
+    //    // Parse JSON string into object
+    //    parsed = JSON.parse(response);
+    //    data = parsed;
+    //    var node = data['order'][0];
+    //    constructCard(node['section'], node['id']);
+    //    constructStackCards();
+    //    hammer();
+    //});
+    
+    if (tempNumber % 13 == 0) {
+        tempNumber = 0;
+    }
+    var node = data['order'][tempNumber];
+    constructCard(node['section'], node['id']);
+    constructStackCards()
+    hammer();
+    tempNumber++;
+    //$("#node_detail").animate({ "opacity": 1 });
+
 }
 
 function constructStackCards() {
     var html =`<div id="card_2" class="card_2 blank_card"></div>
-        <div id="card_3" class="card_3 blank_card"></div>`
+        <div id="card_3" class="card_3 blank_card"></div>
+        <div id="card_4" class="card_4 blank_card"></div>`
 
-    document.getElementById("stack_cards").innerHTML = html;
-    $("#card_2").animate({ "opacity": 1 });
-    $("#card_3").animate({ "opacity": 1 });
+    document.getElementById("node_detail_generation").innerHTML += html;
+    //$("#card_2").animate({ "opacity": 1 });
+    //$("#card_3").animate({ "opacity": 1 });
 
 }
 
-function generateTag(iteration, returnedLocation, colors, columnSplit, use) {
+function generateTag(iteration, tag, colors, columnSplit, use) {
     var random = Math.floor((Math.random() * colors.length));
     var tag_color = colors[random];
     colors.splice(random, 1);
-    return `
+    if (tag) {
+        return `
 <div class="${use}_tag_column_div col-${columnSplit}">
     <div class="${use}_tag_div" style="background-color: ${tag_color};">
-        <p class="${use}_tag_text">${returnedLocation.types[iteration]}</p>
+        <p class="${use}_tag_text">${tag.name}</p>
     </div>
 </div>
 `;
 }
+    else {
+    return `
+<div class="${use}_tag_column_div col-${columnSplit}">
+</div>
+`;
+    }
+}
 
-function constructCard(returnedLocation) {
-    console.log(returnedLocation);
+function constructCard(nodeSection, nodeId) {
     var columnSplit = 4;
     var use = "card";
     var lorem = getLorem();
@@ -112,8 +144,21 @@ function constructCard(returnedLocation) {
         "#337E7B"
     ]
     var tags = "";
-    for (var i = 0; i < 3; i++) {
-        tags += generateTag(i, returnedLocation, colors, columnSplit, use);
+    var node = data[nodeSection][nodeId];
+    var numTags = node['tags'].length;
+    var numShownTags = Math.min(3, numTags);
+    var tags = "";
+    for (var i = 0; i < numShownTags; i++) {
+        tags += generateTag(i, data['tags'][node['tags'][i]], colors, columnSplit, use);
+    }
+    for (var i = numShownTags; i < 3; i++) {
+        tags += generateTag(i, "", colors, columnSplit, use);
+    }
+    var location;
+    if (data[nodeSection] == 'event') {
+        location = data[nodeSection][nodeId][location];
+    } else {
+        location = data[nodeSection][nodeId];
     }
     const cardHTML = `
 <div id="node_detail" class="card">
@@ -121,7 +166,7 @@ function constructCard(returnedLocation) {
         <div class="card_name_photo">
             <div class="card_photo_div">
                 <div class="card_name_div">
-                    <h4 class="card_name">${returnedLocation.name}</h4>
+                    <h4 class="card_name">${data[nodeSection][nodeId].name}</h4>
                     <p class="card_paragraph">You were here Last Saturday from 2:13PM to 7:36PM</p>
                 </div>
                 <div class="card_weather_div">
@@ -131,7 +176,7 @@ function constructCard(returnedLocation) {
                 <div class="card_distance_div">
                     <h4 class="card_distance">2.6mi</h4>
                 </div>
-                <img src="${returnedLocation.photo}" class="card_photo" />
+                <img src="${data[nodeSection][nodeId].photos[0]}" class="card_photo" />
             </div>
         </div>
         <div class="container">
@@ -140,7 +185,7 @@ function constructCard(returnedLocation) {
             </div>
         </div>
         <div class="card_about">
-            <p class="lato card_paragraph">${returnedLocation.address}</p>
+            <p class="lato card_paragraph">${location.address}</p>
             <p class="lato card_paragraph">1741 Likes</p>
             <p class="lato card_paragraph">24 Dislikes</p>
             <p class="lato card_paragraph">Liked by you</p>
@@ -156,7 +201,6 @@ function constructCard(returnedLocation) {
     document.getElementById("node_detail_generation").innerHTML = cardHTML;
     // Get the card
    
-    $("#node_detail").animate({ "opacity": 1 });
 }
 
 function getLorem() {
@@ -170,6 +214,7 @@ function hammer() {
     card.add(new Hammer.Pan({ direction: Hammer.DIRECTION_HORIZONTAL, threshold: 10 }));
     card.on('panleft panright', dragCard);
     card.on('panend', dragEnd);
+    var isSwiped = false;
     //card.on('swiperight', swipeRight);
     //card.on('swipeleft', swipeLeft);
 
@@ -182,8 +227,10 @@ function hammer() {
     function dragCard(ev) {
         var elem = ev.target;
         if (ev.gesture.velocityX >= 2 && ev.gesture.deltaX > 50) {
+            vote("right");
             swipeRight(ev);
         } else if (ev.gesture.velocityX <= -2 && ev.gesture.deltaX < 50) {
+            vote("left");
             swipeLeft(ev);
         }
 
@@ -196,28 +243,30 @@ function hammer() {
     }
 
     function swipeRight(ev) {
-        if (posX >= 200) {
+        if (!isSwiped && posX >= 200) {
+            isSwiped = true;
             console.log("Right");
             card.animate({ left: '500px' },
                 {
                     complete: function () {
                         ev.target.parentNode.remove();
+                        transition();
                     }
                 });
-            transition();
         }
     }
 
     function swipeLeft(ev) {
-        if (posX <= -200) {
+        if (!isSwiped && posX <= -200) {
+            isSwiped = true;
             console.log("Left");
             card.animate({ left: '-500px' },
                 {
                     complete: function () {
                         ev.target.parentNode.remove();
+                        transition();
                     }
                 });
-            transition();
         }
     }
 
@@ -258,16 +307,66 @@ function hammer() {
 }
 
 function transition() {
-    $("#card_2").id = "card_2_animated";
-    $("#card_2_animated").animate({
+    console.log("transition");
+
+    $("#card_2").toggleClass('card_2_animate');
+
+    $("#card_2").animate({
         "z-index": 8,
+        "opacity": 1,
         "position": "relative",
         "width": "85%",
-        "height": "75vh",
-        "border-radius": "75px",
-        
-    });
-    init();
+        "border-radius": "25px",
+        "height": "76vh",
+        margin: "14.25vh auto 9vh auto"
+    },
+        function() {
+            console.log("async called")
+            init();
+        });
+
+    $("#card_3").toggleClass('card_3_animate');
+
+    $("#card_3").animate({
+        "z-index": 7,
+        "opacity": 0.9,
+        "width": "75%",
+        "border-radius": "23px",
+        "height": "76vh",
+        "background-color": "#7D3988",
+        margin: "11.5vh auto"
+    },
+        function () {
+            console.log("async called")
+        });
+
+    $("#card_4").animate({
+        "z-index": 6,
+        "opacity": 0.5,
+        "width": "68%",
+        "border-radius": "21px",
+        "height": "76vh",
+        margin: "9.5vh auto"
+    },
+        function () {
+            console.log("async called")
+        });
+
+
+
+}
+
+function vote(direction) {
+    var voteResult = {
+        swipe: direction//,
+        //node: data[nodeSection][nodeId]
+    }
+    $.post("http://hapcat.tenaisenma.com:8080/api/v0/voting/",
+        voteResult,
+        function (data, status) {
+            alert("Data: " + data + "\nStatus: " + status);
+            console.log(data);
+        });
 }
 
 

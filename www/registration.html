@@ -28,10 +28,9 @@
             * Enable inline JS: add 'unsafe-inline' to default-src
     -->
     <!-- bootstrap links for CSS and JS -->
-
     <!-- Begin basic common stuff: -->
 
-    <meta http-equiv="Content-Security-Policy" content="default-src 'unsafe-inline' 'self' data: gap: https://ssl.gstatic.com https://maps.googleapis.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src *;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'unsafe-inline' 'self' data: gap: https://ssl.gstatic.com https://maps.googleapis.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src *; connect-src http://hapcat.tenaisenma.com:8080;">
 
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css" />
@@ -62,7 +61,6 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRJDCYVpBeazrS8T4mxGWn8t2V5QNBrvA&libraries=places"></script>
 
     <!-- End basic common stuff! -->
-
     <!-- This page stuff -->
     <link rel="stylesheet" type="text/css" href="css/registration.css" />
     <script type="text/javascript" src="js/registration.js"></script>
@@ -85,29 +83,32 @@
         <div class="welcome_message_div">
             <h1 class="welcome_message">Welcome To Hapcat!</h1>
         </div>
-        <form class="registration_form">
+        <p id="username_alert" class="alert">Username unavailable</p>
+        <p id="password_length_alert" class="alert">Password must be at least 6 characters long</p>
+        <p id="password_match_alert" class="alert">Passwords do not match</p>
+        <form class="registration_form" name="registration_form">
             <div class="textinput_div">
-                <p class="textinput_hint">Username</p>
+                <p class="textinput_hint" name="username">Username</p>
                 <input type="text" name="Username" class="textinput" />
             </div>
             <div class="textinput_div">
-                <p class="textinput_hint">Email</p>
+                <p class="textinput_hint" name="email">Email</p>
                 <input type="text" name="Email" class="textinput" />
             </div>
             <div class="textinput_div">
-                <p class="textinput_hint">Password</p>
+                <p class="textinput_hint" name="password">Password</p>
                 <input type="password" name="Password" class="textinput" />
             </div>
             <div class="textinput_div">
-                <p class="textinput_hint">Confirm Password</p>
+                <p class="textinput_hint" name="confirm_password">Confirm Password</p>
                 <input type="password" name="ConfirmPassword" class="textinput" />
             </div>
             <div class="textinput_div">
-                <p class="textinput_hint">Date Of Birth</p>
-                <input type="date" name="DOB" class="textinput" />
+                <p class="textinput_hint" name="DOB">Date Of Birth</p>
+                <input type="button" name="DOB" class="textinput" />
             </div>
             <div>
-                <button class="register_button">Sign Up!</button>
+                <input type="button" class="register_button" onclick="validate()" value="Sign Up!" />
             </div>
         </form>
     </div>

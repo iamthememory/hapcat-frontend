@@ -31,7 +31,7 @@
 
     <!-- Begin basic common stuff: -->
 
-    <meta http-equiv="Content-Security-Policy" content="default-src 'unsafe-inline' 'self' data: gap: https://ssl.gstatic.com https://maps.googleapis.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src *;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'unsafe-inline' 'self' data: gap: https://ssl.gstatic.com https://maps.googleapis.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src *; connect-src http://hapcat.tenaisenma.com:8080 ;">
 
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css" />
@@ -62,10 +62,9 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRJDCYVpBeazrS8T4mxGWn8t2V5QNBrvA&libraries=places"></script>
 
     <!-- End basic common stuff! -->
-
     <!-- This page stuff -->
-
     <link rel="stylesheet" type="text/css" href="css/login.css" />
+    <script type="text/javascript" src="js/login.js"></script>
 
     <style>
         body {
@@ -81,19 +80,23 @@
         <div>
             <img src="img/logo.svg" class="logo">
         </div>
-        <div class="login">
-            <form class="Login_form">
+        <div class="login_div">
+            <form name="login_form">
                 <div class="textinput_div">
-                    <p class="textinput_hint">Username</p>
-                    <input type="text" placeholder="Enter Username" class="textinput" />
+                    <p class="textinput_hint">Username:</p>
+                    <input type="text" placeholder=" Username" class="textinput" />
                 </div>
                 <div class="textinput_div">
-                    <p class="textinput_hint">Password</p>
-                    <input type="text" placeholder="Enter Password" class="textinput" />
+                    <p class="textinput_hint">Password:</p>
+                    <input type="text" placeholder=" Password" class="textinput" />
                 </div>
+                <button class="content_button">Log In</button>
                 <div>
-                    <button class="content_button_login">Log In</button>
+                    <input type="button" class="content_button" onclick="validate()" value="Login" />
                 </div>
+            </form>
+            
+            <div>
                 <div>
                     <button class="content_button_new">New? Register here!</button>
                 </div>
